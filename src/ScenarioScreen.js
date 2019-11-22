@@ -14,7 +14,7 @@ export const ScenarioScreen = ({ scenarioId }) => {
     if(!scenario) {
         return null
     }
-    switch ("watch") {
+    switch (scenario.type) {
         case "question":
             return (<QuestionScreen scenario={scenario} scenarioId={scenarioId} />)
         case "before":
