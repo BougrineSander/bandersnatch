@@ -1,9 +1,18 @@
 import React from 'react'
+import { Answer } from './Answer';
 
-export const QuestionScreen = () => {
+export const QuestionScreen = ({scenario}) => {
+    const question = scenario.question;
+    const answers = scenario.answers;
     return (
         <div>
-            <p>todo: question here</p>
+            <p>{question}</p>
+            {answers.map(renderAnswer)}
         </div>
     )
 }
+
+const renderAnswer = (answer) => (
+    <Answer answer={answer} />
+)
+
