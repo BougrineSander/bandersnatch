@@ -21,3 +21,13 @@
 .App-link {
   color: #09d3ac;
 }
+
+.answer {
+  margin: auto;
+  margin-bottom: 40px;
+  padding: 40px;
+} 
+
+.selected-answer {
+  background: rgb(248, 120, 107);
+}

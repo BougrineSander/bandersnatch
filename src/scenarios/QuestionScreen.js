@@ -27,7 +27,7 @@ export const QuestionScreen = ({scenario, scenarioId, userId}) => {
     }
     return (
         <div>
-            <p>{question}</p>
+            <h3>{question}</h3>
             {answers.map((doc) => renderAnswer(doc, selectAnswer, selectedAnswer))}
         </div>
     )
