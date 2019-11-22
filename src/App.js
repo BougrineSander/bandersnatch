@@ -2,23 +2,26 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { Firestore } from "./FirebaseConfig";
+import { ScenarioScreen } from './ScenarioScreen';
+
 function App() {
+  const [currentScenario, setScenario] = React.useState()
+  React.useEffect(() => {
+    Firestore
+		.collection('performances')
+		.doc("demo")
+		.onSnapshot((snapshot) => {
+      const demo = snapshot.data();
+      console.log("snapshot", snapshot)
+      console.log("data", demo)
+      setScenario(demo.current_scenario)
+		});
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ScenarioScreen scenario={currentScenario}/>
     </div>
   );
 }
