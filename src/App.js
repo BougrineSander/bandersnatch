@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {v1} from 'uuid';
 
 import { Firestore } from "./FirebaseConfig";
 import { ScenarioScreen } from './ScenarioScreen';
 
+const uuid = v1();
+
 function App() {
+  console.log("uuid", uuid)
   const [currentScenario, setScenario] = React.useState()
   React.useEffect(() => {
     Firestore
@@ -18,10 +21,10 @@ function App() {
       setScenario(demo.currentScenario)
 		});
   }, [])
-
+  
   return (
     <div className="App">
-      <ScenarioScreen scenarioId={currentScenario}/>
+      <ScenarioScreen scenarioId={currentScenario} userId={uuid}/>
     </div>
   );
 }

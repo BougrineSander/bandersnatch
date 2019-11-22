@@ -5,7 +5,7 @@ import { AfterScreen } from './scenarios/AfterScreen'
 import { WatchScreen } from './scenarios/WatchScreen'
 import { Firestore } from "./FirebaseConfig";
 
-export const ScenarioScreen = ({ scenarioId }) => {
+export const ScenarioScreen = ({ scenarioId, userId }) => {
     const [scenario, setScenario] = React.useState()
     React.useEffect(() => {
         if(scenarioId) fetchScenario(scenarioId, setScenario)
@@ -14,9 +14,9 @@ export const ScenarioScreen = ({ scenarioId }) => {
     if(!scenario) {
         return null
     }
-    switch ("after") {
+    switch (scenario.type) {
         case "question":
-            return (<QuestionScreen scenario={scenario} scenarioId={scenarioId} />)
+            return (<QuestionScreen scenario={scenario} scenarioId={scenarioId} userId={userId} />)
         case "before":
             return (<BeforeScreen />)
         case "after":

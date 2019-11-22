@@ -2,7 +2,7 @@ import React from 'react'
 import { Answer } from './Answer';
 import { Firestore } from "../FirebaseConfig";
 
-export const QuestionScreen = ({scenario, scenarioId}) => {
+export const QuestionScreen = ({scenario, scenarioId, userId}) => {
     const question = scenario.question;
     const [answers, setAnswers] = React.useState()
     const [selectedAnswer, setSelectedAnswer] = React.useState()
@@ -11,7 +11,19 @@ export const QuestionScreen = ({scenario, scenarioId}) => {
     }, [scenario, scenarioId])
     if(!answers) return null
     const selectAnswer = (answerDoc) => {
+        if(selectedAnswer && selectedAnswer.id == answerDoc.id) return
+        Firestore
+        .collection("performances")
+        .doc("demo")
+        .collection("scenarios")
+        .doc(scenarioId)
+        .collection("selected")
+        .doc(userId)
+        .set({
+           answer: answerDoc.id
+        })
         setSelectedAnswer(answerDoc)
+
     }
     return (
         <div>
