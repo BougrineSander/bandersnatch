@@ -5,7 +5,15 @@ import {v1} from 'uuid';
 import { Firestore } from "./FirebaseConfig";
 import { ScenarioScreen } from './ScenarioScreen';
 
-const uuid = v1();
+const storedUuid = window.localStorage.getItem('uuid');
+let uuid;
+if(storedUuid) {
+  uuid = storedUuid;
+} else {
+  uuid = v1();
+  window.localStorage.setItem('uuid', uuid);
+}
+
 
 function App() {
   console.log("uuid", uuid)
@@ -21,7 +29,7 @@ function App() {
       setScenario(demo.currentScenario)
 		});
   }, [])
-  
+
   return (
     <div className="App">
       <ScenarioScreen scenarioId={currentScenario} userId={uuid}/>
