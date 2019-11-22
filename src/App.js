@@ -15,13 +15,13 @@ function App() {
       const demo = snapshot.data();
       console.log("snapshot", snapshot)
       console.log("data", demo)
-      setScenario(demo.current_scenario)
+      setScenario(demo.currentScenario)
 		});
   }, [])
 
   return (
     <div className="App">
-      <ScenarioScreen scenario={currentScenario}/>
+      <ScenarioScreen scenarioId={currentScenario}/>
     </div>
   );
 }

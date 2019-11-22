@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import image from '../img/happySadMask.png';
 import loading from '../img/loading.gif'
 
