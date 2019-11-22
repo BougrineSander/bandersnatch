@@ -20,7 +20,7 @@ exports.incrementAnswerCount = functions.firestore
 
       // We'll only update if the name has changed.
       // This is crucial to prevent infinite loops.
-      if (data.answer == previousData.answer) return null;
+      if (previousData && data.answer == previousData.answer) return null;
 
       const questionId = context.params.scenarioId
       const answerId = data.answer;
