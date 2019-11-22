@@ -5,7 +5,7 @@ import { AfterScreen } from './scenarios/AfterScreen'
 import { WatchScreen } from './scenarios/WatchScreen'
 
 export const ScenarioScreen = ({ scenario }) => {
-    switch (scenario.type) {
+    switch ("before") {
         case "question":
             return (<QuestionScreen />)
         case "before":
