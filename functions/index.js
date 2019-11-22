@@ -11,7 +11,7 @@ const db = admin.firestore();
 //  response.send("Hello from Firebase!");
 // });
 
-exports.useWildcard = functions.firestore
+exports.incrementAnswerCount = functions.firestore
     .document('performances/demo/scenarios/{scenarioId}/selected/{userId}')
     .onWrite((change, context) => {
         // Retrieve the current and previous value
@@ -20,14 +20,14 @@ exports.useWildcard = functions.firestore
 
       // We'll only update if the name has changed.
       // This is crucial to prevent infinite loops.
-      if (data.name == previousData.name) return null;
+      if (data.answer == previousData.answer) return null;
 
       const questionId = context.params.scenarioId
       const answerId = data.answer;
     
       const answer = db.doc(`performances/demo/scenarios/${questionId}/answers/${answerId}`)
       const answerData = answer.data();
-      const count = answerData.count
+      let count = answerData.count
       if (!count) {
         count = 0;
       }
