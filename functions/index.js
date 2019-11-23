@@ -27,11 +27,23 @@ exports.incrementAnswerCount = functions.firestore
       console.log("questionId", questionId)
       console.log("answerId", answerId);
     
+      // current
       const answerRef = db.doc(`performances/demo/scenarios/${questionId}/answers/${answerId}`)
       let count = await countAnswers(questionId, answerId)
       answerRef.set({
           count: count,
       }, {merge: true})
+
+      if(previousData) {
+        // recount previous
+        const previousAnswerId = previousData.answer;
+      const answerRefPrevious = db.doc(`performances/demo/scenarios/${questionId}/answers/${previousAnswerId}`)
+      let countPrevious = await countAnswers(questionId, answerId)
+      answerRefPrevious.set({
+          count: countPrevious,
+      }, {merge: true})
+      }
+      
     });
 
     const countAnswers = async (questionId, answerId) => {
